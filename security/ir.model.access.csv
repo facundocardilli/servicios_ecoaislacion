@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_obras_obra_user,obras.obra,model_obras_obra,base.group_user,1,1,1,1
+access_obras_registro_material_user,obras.registro_material,model_obras_registro_material,base.group_user,1,1,1,1
+access_obras_registro_diario_user,obras.registro_diario,model_obras_registro_diario,base.group_user,1,1,1,1
