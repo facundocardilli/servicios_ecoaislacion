@@ -1,0 +1,105 @@
+<odoo>
+    <!-- Vista árbol de Obras con filtro por estado -->
+    <record id="view_obras_tree" model="ir.ui.view">
+        <field name="name">obras.obra.tree</field>
+        <field name="model">obras.obra</field>
+        <field name="arch" type="xml">
+            <tree string="Obras">
+                <field name="name"/>
+                <field name="cliente_id"/>
+                <field name="status"/>
+                <field name="presupuesto_id"/>
+                <field name="metros_aplicar"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista formulario de Obra con gestión de registros diarios -->
+    <record id="view_obras_form" model="ir.ui.view">
+        <field name="name">obras.obra.form</field>
+        <field name="model">obras.obra</field>
+        <field name="arch" type="xml">
+            <form string="Obra">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="direccion"/>
+                        <field name="cliente_id"/>
+                        <field name="presupuesto_id"/>
+                        <field name="status"/>
+                    </group>
+                    <group>
+                        <field name="tiempo_traslado"/>
+                        <field name="metros_aplicar"/>
+                        <field name="espesor"/>
+                        <field name="altura_maxima"/>
+                    </group>
+                    <notebook>
+                        <page string="Registros Diarios">
+                            <field name="registro_diario_ids">
+                                <tree editable="bottom">
+                                    <field name="fecha"/>
+                                    <field name="metros_aplicados"/>
+                                    <field name="empleado_ids"/>
+                                    <field name="hora_inicio"/>
+                                    <field name="hora_fin"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="fecha"/>
+                                        <field name="metros_aplicados"/>
+                                        <field name="empleado_ids"/>
+                                        <field name="hora_inicio"/>
+                                        <field name="hora_fin"/>
+                                        <field name="duracion_jornada"/>
+                                        <field name="observaciones"/>
+                                    </group>
+                                    <notebook>
+                                        <page string="Materiales Usados">
+                                            <field name="registro_material_ids">
+                                                <tree editable="bottom">
+                                                    <field name="material_id"/>
+                                                    <field name="cantidad_usada"/>
+                                                    <field name="inicio_aplicacion"/>
+                                                    <field name="fin_aplicacion"/>
+                                                </tree>
+                                            </field>
+                                        </page>
+                                    </notebook>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Filtros rápidos en la búsqueda de obras -->
+    <record id="view_obras_search" model="ir.ui.view">
+        <field name="name">obras.obra.search</field>
+        <field name="model">obras.obra</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Nombre"/>
+                <field name="cliente_id" string="Cliente"/>
+                <field name="status" string="Estado"/>
+                <filter name="en_progreso" string="En Progreso" domain="[('status','=','activa')]"/>
+                <filter name="pendientes" string="Pendientes" domain="[('status','=','pendiente')]"/>
+                <filter name="finalizadas" string="Finalizadas" domain="[('status','=','finalizada')]"/>
+                <filter name="canceladas" string="Canceladas" domain="[('status','=','cancelada')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Acción y menú -->
+    <record id="action_obras" model="ir.actions.act_window">
+        <field name="name">Obras</field>
+        <field name="res_model">obras.obra</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_obras_search"/>
+    </record>
+
+    <menuitem id="menu_obras_root" name="Obras"/>
+    <menuitem id="menu_obras" name="Obras" parent="menu_obras_root" action="action_obras"/>
+</odoo>

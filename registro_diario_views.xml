@@ -1,0 +1,61 @@
+<odoo>
+    <record id="view_registro_diario_tree" model="ir.ui.view">
+        <field name="name">obras.registro_diario.tree</field>
+        <field name="model">obras.registro_diario</field>
+        <field name="arch" type="xml">
+            <tree string="Registros Diarios">
+                <field name="fecha"/>
+                <field name="obra_id"/>
+                <field name="metros_aplicados"/>
+                <field name="duracion_jornada"/>
+                <field name="empleado_ids"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_registro_diario_form" model="ir.ui.view">
+        <field name="name">obras.registro_diario.form</field>
+        <field name="model">obras.registro_diario</field>
+        <field name="arch" type="xml">
+            <form string="Registro Diario de Obra">
+                <sheet>
+                    <group>
+                        <field name="obra_id"/>
+                        <field name="fecha"/>
+                        <field name="empleado_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="hora_inicio"/>
+                        <field name="hora_fin"/>
+                        <field name="duracion_jornada"/>
+                        <field name="metros_aplicados"/>
+                    </group>
+                    <group>
+                        <field name="observaciones"/>
+                    </group>
+                    <notebook>
+                        <page string="Materiales Usados">
+                            <field name="registro_material_ids">
+                                <tree editable="bottom">
+                                    <field name="material_id"/>
+                                    <field name="cantidad_usada"/>
+                                    <field name="inicio_aplicacion"/>
+                                    <field name="fin_aplicacion"/>
+                                    <field name="observaciones"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_registro_diario" model="ir.actions.act_window">
+        <field name="name">Registros Diarios</field>
+        <field name="res_model">obras.registro_diario</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_registro_diario_root" name="Registros Diarios" parent="menu_obras_root" sequence="20" action="action_registro_diario"/>
+</odoo>
