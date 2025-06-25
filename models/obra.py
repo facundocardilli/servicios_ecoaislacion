@@ -19,6 +19,11 @@ class Obra(models.Model):
     metros_aplicar = fields.Float(string='Metros a aplicar (m²)')
     espesor = fields.Float(string='Espesor (cm)')
     altura_maxima = fields.Float(string='Altura máxima (m)')
+    registro_diario_ids = fields.One2many(
+        'obras.registro_diario',
+        'obra_id',
+        string='Registros Diarios',
+    )
 
     @api.constrains('direccion', 'status')
     def _check_obra_activa_unica_por_direccion(self):

@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class RegistroMaterial(models.Model):
     _name = 'obras.registro_material'
@@ -21,6 +21,22 @@ class RegistroDiario(models.Model):
     observaciones = fields.Text(string='Observaciones')
     hora_inicio = fields.Float(string='Hora inicio')
     hora_fin = fields.Float(string='Hora fin')
-    duracion_jornada = fields.Float(string='Duración jornada')
+    duracion_jornada = fields.Float(
+        string='Duración jornada',
+        compute='_compute_duracion_jornada',
+        store=True,
+    )
     empleado_ids = fields.Many2many('hr.employee', string='Empleados')
-    registro_material_ids = fields.One2many('obras.registro_material', 'registro_diario_id', string='Materiales Usados')
+    registro_material_ids = fields.One2many(
+        'obras.registro_material',
+        'registro_diario_id',
+        string='Materiales Usados',
+    )
+
+    @api.depends('hora_inicio', 'hora_fin')
+    def _compute_duracion_jornada(self):
+        for record in self:
+            if record.hora_inicio and record.hora_fin:
+                record.duracion_jornada = record.hora_fin - record.hora_inicio
+            else:
+                record.duracion_jornada = 0.0
