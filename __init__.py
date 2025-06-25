@@ -1,2 +1,1 @@
-from . import obra
-from . import registro_diario
+from . import models
