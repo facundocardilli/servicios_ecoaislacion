@@ -19,7 +19,7 @@ function login() {
     const db = document.getElementById('db').value;
     const login = document.getElementById('loginUser').value;
     const password = document.getElementById('loginPassword').value;
-    jsonRpc(`${ODOO_URL}/web/session/authenticate`, 'call', { db, login, password })
+    jsonRpc(`${ODOO_URL}/mobile/session/authenticate`, 'call', { db, login, password })
         .then(res => {
             if (res.result && res.result.uid) {
                 sessionId = res.result.session_id;
@@ -40,7 +40,7 @@ function loadObras() {
         args: [],
         kwargs: { fields: ['id', 'name'] }
     };
-    jsonRpc(`${ODOO_URL}/web/dataset/call_kw`, 'call', params)
+    jsonRpc(`${ODOO_URL}/mobile/dataset/call_kw`, 'call', params)
         .then(res => {
             const select = document.getElementById('obraSelect');
             select.innerHTML = '';
@@ -78,7 +78,7 @@ function endJornada() {
         }],
         kwargs: {}
     };
-    jsonRpc(`${ODOO_URL}/web/dataset/call_kw`, 'call', params)
+    jsonRpc(`${ODOO_URL}/mobile/dataset/call_kw`, 'call', params)
         .then(() => {
             alert('Registro guardado');
             localStorage.removeItem('startTime');
