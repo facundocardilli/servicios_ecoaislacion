@@ -1,0 +1,23 @@
+Reporte Semanal - Fecha: 2025-06-26
+
+Indicadores Principales:
+- Bolsas de fibra usadas: 231
+  [##----------------------------]
+- Adhesivo (bidones): 48
+  [------------------------------]
+- Volumen aplicado (m2): 2654
+  [##############################]
+- Obras iniciadas: 13
+  [------------------------------]
+- Kg de descarte: 446.0
+  [#####-------------------------]
+- Tiempo promedio jornada (h): 5.33
+  [------------------------------]
+- Cantidad registros diarios: 18
+  [------------------------------]
+
+Indicadores Adicionales:
+- Fibra por m2: 0.087
+- Adhesivo por m2: 0.0181
+- Descarte por m2 (kg): 0.168
+- Horas totales estimadas: 95.94
