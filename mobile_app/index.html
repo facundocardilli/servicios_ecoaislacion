@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Jornada</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="login" class="screen">
+    <h1>Conectar a Odoo</h1>
+    <label>Base de datos<input id="db" type="text" placeholder="DB"></label>
+    <label>Usuario<input id="loginUser" type="text" placeholder="Usuario"></label>
+    <label>Contraseña<input id="loginPassword" type="password" placeholder="Contraseña"></label>
+    <button id="loginButton">Ingresar</button>
+</div>
+
+<div id="main" class="screen hidden">
+    <h1>Registro de Jornada</h1>
+    <label>Obra
+        <select id="obraSelect"></select>
+    </label>
+    <div id="startSection">
+        <button id="startButton">Iniciar Jornada</button>
+    </div>
+    <div id="endSection" class="hidden">
+        <textarea id="materiales" placeholder="Materiales utilizados"></textarea>
+        <button id="endButton">Cerrar Jornada</button>
+    </div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
